@@ -1,0 +1,39 @@
+{
+  "allPlaceholder": "",
+  "showInfoWindowOnSelect": true,
+  "sources": [
+    {
+      "layerId": "Sacramento_APP_Test_Time_Field_5054",
+      "url": "https://services5.arcgis.com/8tbZGzFP4ylTC7QO/arcgis/rest/services/Sacramento_APP_Test_Time_Field/FeatureServer/2",
+      "name": "AWMP Parcels",
+      "placeholder": "",
+      "searchFields": [
+        "OBJECTID",
+        "AWMP_TYPE",
+        "Address"
+      ],
+      "displayField": "OBJECTID",
+      "exactMatch": false,
+      "searchInCurrentMapExtent": false,
+      "zoomScale": 50000,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "type": "query"
+    },
+    {
+      "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+      "name": "World",
+      "singleLineFieldName": "SingleLine",
+      "placeholder": "World",
+      "countryCode": "",
+      "zoomScale": 50000,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "searchInCurrentMapExtent": false,
+      "enableLocalSearch": true,
+      "localSearchMinScale": 300000,
+      "localSearchDistance": 50000,
+      "type": "locator"
+    }
+  ]
+}
