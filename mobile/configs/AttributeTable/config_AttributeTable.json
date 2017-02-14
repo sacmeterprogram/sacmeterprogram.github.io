@@ -1,0 +1,361 @@
+{
+  "layerInfos": [
+    {
+      "name": "City Boundary",
+      "id": "Sacramento_APP_Test_Time_Field_220",
+      "layer": {
+        "url": "https://services5.arcgis.com/8tbZGzFP4ylTC7QO/arcgis/rest/services/Sacramento_APP_Test_Time_Field/FeatureServer/0",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": false,
+            "format": null
+          },
+          {
+            "name": "AREA",
+            "alias": "AREA",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Perimeter",
+            "alias": "Perimeter",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Acres",
+            "alias": "Acres",
+            "show": true,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Shape__Area",
+            "alias": "Shape__Area",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Shape__Length",
+            "alias": "Shape__Length",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          }
+        ]
+      },
+      "show": true
+    },
+    {
+      "name": "Council Districts",
+      "id": "Sacramento_APP_Test_Time_Field_4568",
+      "layer": {
+        "url": "https://services5.arcgis.com/8tbZGzFP4ylTC7QO/arcgis/rest/services/Sacramento_APP_Test_Time_Field/FeatureServer/1",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": false,
+            "format": null
+          },
+          {
+            "name": "DISTNUM",
+            "alias": "DISTNUM",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "Name",
+            "alias": "Name",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "Shape__Area",
+            "alias": "Shape__Area",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Shape__Length",
+            "alias": "Shape__Length",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          }
+        ]
+      },
+      "show": true
+    },
+    {
+      "name": "AWMP Boundaries",
+      "id": "Sacramento_APP_Test_Time_Field_5151",
+      "layer": {
+        "url": "https://services5.arcgis.com/8tbZGzFP4ylTC7QO/arcgis/rest/services/Sacramento_APP_Test_Time_Field/FeatureServer/3",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": false,
+            "format": null
+          },
+          {
+            "name": "PRJ_NAME",
+            "alias": "Project Name",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "PRJ_NUMBER",
+            "alias": "Project Number",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "PRJ_YEAR_PHASE",
+            "alias": "Project Year",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "Construction_Start_Time",
+            "alias": "Construction_Start_Time",
+            "show": true,
+            "format": {
+              "dateFormat": "longMonthDayYear"
+            }
+          },
+          {
+            "name": "Construction_Stop_Time",
+            "alias": "Construction_Stop_Time",
+            "show": true,
+            "format": {
+              "dateFormat": "longMonthDayYear"
+            }
+          },
+          {
+            "name": "Shape__Area",
+            "alias": "Shape__Area",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Shape__Length",
+            "alias": "Shape__Length",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "AWMP_Priority",
+            "alias": "AWMP_Priority",
+            "show": false
+          },
+          {
+            "name": "Project_Status",
+            "alias": "Phase",
+            "show": true
+          }
+        ]
+      },
+      "show": true
+    },
+    {
+      "name": "AWMP Parcels",
+      "id": "Sacramento_APP_Test_Time_Field_5054",
+      "layer": {
+        "url": "https://services5.arcgis.com/8tbZGzFP4ylTC7QO/arcgis/rest/services/Sacramento_APP_Test_Time_Field/FeatureServer/2",
+        "fields": [
+          {
+            "name": "Address",
+            "alias": "Address",
+            "show": true
+          },
+          {
+            "name": "STREET_NBR",
+            "alias": "Street No.",
+            "show": false
+          },
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": false
+          },
+          {
+            "name": "STREET_NAM",
+            "alias": "Street Name",
+            "show": false
+          },
+          {
+            "name": "AWMP_TYPE",
+            "alias": "AWMP Type",
+            "show": true
+          },
+          {
+            "name": "AWMP_Project",
+            "alias": "AWMP_Project",
+            "show": true
+          },
+          {
+            "name": "Construction_Start",
+            "alias": "Construction_Start",
+            "show": true,
+            "format": {
+              "dateFormat": "longMonthDayYear"
+            }
+          },
+          {
+            "name": "Construction_Stop",
+            "alias": "Construction_Stop",
+            "show": true,
+            "format": {
+              "dateFormat": "longMonthDayYear"
+            }
+          },
+          {
+            "name": "Shape__Area",
+            "alias": "Shape__Area",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Shape__Length",
+            "alias": "Shape__Length",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Construction_Phase",
+            "alias": "Construction_Phase",
+            "show": false
+          }
+        ]
+      },
+      "show": true
+    },
+    {
+      "name": "Time of Parcels",
+      "id": "Sacramento_APP_Test_Time_Field_5054_6638",
+      "layer": {
+        "url": "https://services5.arcgis.com/8tbZGzFP4ylTC7QO/arcgis/rest/services/Sacramento_APP_Test_Time_Field/FeatureServer/2",
+        "fields": [
+          {
+            "name": "OBJECTID",
+            "alias": "OBJECTID",
+            "show": false,
+            "format": null
+          },
+          {
+            "name": "STREET_NBR",
+            "alias": "Street No.",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "STREET_NAM",
+            "alias": "Street Name",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "AWMP_TYPE",
+            "alias": "AWMP Type",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "AWMP_Project",
+            "alias": "AWMP_Project",
+            "show": true,
+            "format": null
+          },
+          {
+            "name": "Construction_Start",
+            "alias": "Construction_Start",
+            "show": true,
+            "format": {
+              "dateFormat": "longMonthDayYear"
+            }
+          },
+          {
+            "name": "Construction_Stop",
+            "alias": "Construction_Stop",
+            "show": true,
+            "format": {
+              "dateFormat": "longMonthDayYear"
+            }
+          },
+          {
+            "name": "Construction_Scheduled",
+            "alias": "Construction_Scheduled",
+            "show": true,
+            "format": {
+              "dateFormat": "longMonthDayYear"
+            }
+          },
+          {
+            "name": "Shape__Area",
+            "alias": "Shape__Area",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          },
+          {
+            "name": "Shape__Length",
+            "alias": "Shape__Length",
+            "show": false,
+            "format": {
+              "places": 2,
+              "digitSeparator": true
+            }
+          }
+        ]
+      },
+      "show": false
+    }
+  ],
+  "table": {
+    "pageSizeOptions": [
+      25,
+      50,
+      100,
+      1000
+    ]
+  },
+  "hideExportButton": true,
+  "initiallyExpand": false,
+  "filterByMapExtent": true
+}
