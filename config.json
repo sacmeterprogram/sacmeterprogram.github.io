@@ -11,10 +11,10 @@
       "mainBackgroundColor": "#3a5286"
     }
   },
-  "portalUrl": "https://Carollo.maps.arcgis.com",
+  "portalUrl": "http://Carollo.maps.arcgis.com",
   "appId": "",
   "authorizedCrossOriginDomains": [],
-  "title": "Sacramento Meter Program 1/19",
+  "title": "Sacramento Meter Program",
   "subtitle": "partnered with Carollo",
   "keepAppState": true,
   "logo": "images\\logo.jpeg",
@@ -237,7 +237,12 @@
         "id": "widgets_Legend_Widget_16",
         "name": "Legend",
         "index": 0,
-        "config": "configs/Legend/config_Legend.json"
+        "position": {
+          "right": 20,
+          "top": 30
+        },
+        "config": "configs/Legend/config_Legend.json",
+        "openAtStart": true
       },
       {
         "uri": "widgets/LayerList/Widget",
@@ -392,12 +397,15 @@
     }
   },
   "loadingPage": {
-    "backgroundColor": "#719dc5",
+    "backgroundColor": "#ffffff",
     "backgroundImage": {
-      "visible": true
+      "visible": true,
+      "uri": "configs/loading/images/background.png",
+      "width": 254,
+      "height": 59
     },
     "loadingGif": {
-      "visible": true,
+      "visible": false,
       "uri": "/webappbuilder/apps/4/configs/loading/images/predefined_loading_1.gif",
       "width": 58,
       "height": 58

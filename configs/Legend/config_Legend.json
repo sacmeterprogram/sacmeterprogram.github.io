@@ -2,6 +2,10 @@
   "legend": {
     "arrangement": 0,
     "autoUpdate": true,
-    "respectCurrentMapScale": true
+    "respectCurrentMapScale": true,
+	 "position": {
+            "left": 500,
+            "bottom": 70
+          }
   }
 }

@@ -7,7 +7,7 @@
       "color": "#ffffff",
       "transparency": 0
     },
-    "showOption": false,
+    "showOption": true,
     "confirmEverytime": true,
     "contentVertical": "top",
     "size": {

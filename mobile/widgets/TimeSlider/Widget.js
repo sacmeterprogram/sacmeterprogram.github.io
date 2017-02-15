@@ -1039,10 +1039,10 @@ define(['dojo/_base/declare',
 
             if (timeExtent && construction_phase == 'construction_upcoming'){
                 layer2_graphics[i].attributes.Construction_Phase = 'Construction Upcoming';
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,170,0,1])));
+                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,1])));
                 //console.log('working');
             } else if (timeExtent && construction_phase == 'construction_scheduled'){
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,1])));
+                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,170,0,1])));
                 layer2_graphics[i].attributes.AWMP_Type = 'Construction Scheduled';
             } else if (timeExtent && construction_phase == 'under_construction'){
                 layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,0,0,1])));
