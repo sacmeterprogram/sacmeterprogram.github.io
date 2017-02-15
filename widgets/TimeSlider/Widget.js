@@ -1056,6 +1056,71 @@ define(['dojo/_base/declare',
             }
          }
 
+        for (i = 0, len = layer_graphics.length; i < len; i++) {
+            //console.log(layer2_graphics[i].attributes);
+            var new_color = new dojo.Color('blue');
+            var feature_start_to_time_end, feature_start_to_feature_end, feature_start_to_time_start, feature_end_feature_start_to_time_start, construction_phase
+
+            // Setup logic to categorize elements based on phases set
+            if (timeExtent && layer_graphics[i].attributes.Construction_Start_Time && layer_graphics[i].attributes.Construction_Stop_Time){
+                feature_start_to_time_end = (layer_graphics[i].attributes.Construction_Start_Time - timeExtent.endTime)/1000/60/60/24;
+                feature_start_to_feature_end = (layer_graphics[i].attributes.Construction_Stop_Time - layer_graphics[i].attributes.Construction_Start_Time)/1000/60/60/24;
+                //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.Construction_Start_Time)/1000/60/60/24;
+                //feature_end_feature_start_to_time_start = (timeExtent.startTime - layer_graphics[i].attributes.Construction_End_Time)/1000/60/60/24
+                feature_end_to_time_end = (timeExtent.endTime - layer_graphics[i].attributes.Construction_Stop_Time)/1000/60/60/24
+
+                if (feature_end_to_time_end >=0 ) {
+                    construction_phase = 'construction_finished';
+                } else if (feature_start_to_time_end <= 0 && feature_end_to_time_end < 0) {
+                    construction_phase = 'under_construction';
+                } else if (feature_start_to_time_end < 90) {
+                    construction_phase = 'construction_scheduled';
+                } else {
+                    if (layer_graphics[i].attributes.Construction_Start_Time && layer_graphics[i].attributes.Construction_Stop_Time) {
+                        construction_phase = 'construction_upcoming';
+                        //console.log(construction_phase);
+                    } else {
+                        construction_phase = 'schedule_unknown';
+                        //console.log(construction_phase);
+                    }
+                }
+            } else {
+                feature_start_to_time_end = 0;
+                feature_end_to_time_end = 0;
+                construction_phase = "schedule_unknown";
+            }
+            //console.log(layer_graphics[i].attributes);
+            /*
+            if (timeExtent){
+                if (layer2_graphics[i].attributes.APN == "26502320130000") {
+                    console.log(feature_start_to_time_end);
+                    console.log(feature_end_to_time_end);
+                    console.log(construction_phase);
+                    console.log(timeExtent.endTime);
+                    console.log(layer2_graphics[i].attributes);
+                }
+                //layer2_graphics[i].attributes.PRJ_YEAR_PHASE = 'YEAR 1';
+            }
+            */
+
+            if (timeExtent && construction_phase == 'construction_upcoming'){
+                layer_graphics[i].attributes.Project_Status = 'Construction Upcoming';
+                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,1])));
+                //console.log('working');
+            } else if (timeExtent && construction_phase == 'construction_scheduled'){
+                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,1])));
+                layer_graphics[i].attributes.Project_Status = 'Construction Scheduled';
+            } else if (timeExtent && construction_phase == 'under_construction'){
+                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,0,0,1])));
+                layer_graphics[i].attributes.Project_Status = 'Under Construction';
+            } else if (timeExtent && construction_phase == 'construction_finished'){
+                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,128,0,1])));
+                layer_graphics[i].attributes.Project_Status = 'Construction Finished';
+            } else {
+                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,1])));
+                layer_graphics[i].attributes.Project_Status = 'No Construction Scheduled';
+            }
+         }
 
          /*
          var ager = new esri.renderer.TimeClassBreaksAger(infos, esri.renderer.TimeClassBreaksAger.UNIT_DAYS);

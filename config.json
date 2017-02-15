@@ -239,7 +239,7 @@
         "index": 0,
         "position": {
           "right": 20,
-          "top": 30
+          "bottom": 60
         },
         "config": "configs/Legend/config_Legend.json",
         "openAtStart": true
@@ -249,7 +249,8 @@
         "version": "2.2",
         "id": "widgets_LayerList_Widget_17",
         "name": "LayerList",
-        "index": 1
+        "index": 1,
+        "config": "configs/LayerList/config_LayerList.json"
       }
     ],
     "groups": []
