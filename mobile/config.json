@@ -238,7 +238,12 @@
         "id": "widgets_Legend_Widget_16",
         "name": "Legend",
         "index": 0,
-        "config": "configs/Legend/config_Legend.json"
+        "position": {
+          "right": 20,
+          "bottom": 60
+        },
+        "config": "configs/Legend/config_Legend.json",
+        "openAtStart": true
       },
       {
         "uri": "widgets/LayerList/Widget",
@@ -393,12 +398,15 @@
     }
   },
   "loadingPage": {
-    "backgroundColor": "#719dc5",
+    "backgroundColor": "#ffffff",
     "backgroundImage": {
-      "visible": true
+      "visible": true,
+      "uri": "configs/loading/images/background.png",
+      "width": 254,
+      "height": 59
     },
     "loadingGif": {
-      "visible": true,
+      "visible": false,
       "uri": "/webappbuilder/apps/4/configs/loading/images/predefined_loading_1.gif",
       "width": 58,
       "height": 58
