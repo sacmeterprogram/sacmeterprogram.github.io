@@ -8,11 +8,11 @@
       "name": "AWMP Parcels",
       "placeholder": "",
       "searchFields": [
-        "OBJECTID",
+        "APN",
         "AWMP_TYPE",
         "Address"
       ],
-      "displayField": "OBJECTID",
+      "displayField": "Address",
       "exactMatch": false,
       "searchInCurrentMapExtent": false,
       "zoomScale": 50000,
