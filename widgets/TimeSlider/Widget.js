@@ -1051,7 +1051,8 @@ define(['dojo/_base/declare',
                 layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,128,0,1])));
                 layer2_graphics[i].attributes.Construction_Phase = 'Construction Finished';
             } else if (layer2_graphics[i].attributes.Construction_Phase) {
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,112,255,1])));
+                //layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,112,255,1])));
+		layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([153,153,153,1])));
                 layer2_graphics[i].attributes.Construction_Phase = 'No Construction Scheduled';
             }
          }
