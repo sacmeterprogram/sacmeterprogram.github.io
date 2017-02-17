@@ -15,89 +15,7 @@
 ///////////////////////////////////////////////////////////////////////////
 
 
-function update_parcel_symbology(timeExtent, layer2){
 
-         layerId = this.map.graphicsLayerIds[0];
-         layer = this.map.getLayer("Sacramento_APP_Test_Time_Field_5151");// AWMP Boundaries
-         layer2 = this.map.getLayer("Sacramento_APP_Test_Time_Field_5054");// AWMP Parcels
-         layer3 = this.map.getLayer("Sacramento_APP_Test_Time_Field_4568");// Council Districts
-         layer4 = this.map.getLayer("Sacramento_APP_Test_Time_Field_220");// City Boundary
-         var layer_graphics = layer.graphics;
-         var layer2_graphics = layer2.graphics;
-         //console.log(layer2_graphics);
-
-         //myMap = this.map;
-         //myMap.connect("extent-change", function(){
-         //console.log("zoom finishd!");
-         //});
-         for (i = 0, len = layer2_graphics.length; i < len; i++) {
-            //console.log(layer2_graphics[i].attributes);
-            var new_color = new dojo.Color('blue');
-            var feature_start_to_time_end, feature_start_to_feature_end, feature_start_to_time_start, feature_end_feature_start_to_time_start, construction_phase
-
-            // Setup logic to categorize elements based on phases set
-            if (timeExtent && layer2_graphics[i].attributes.Construction_Start && layer2_graphics[i].attributes.Construction_Stop){
-                feature_start_to_time_end = (layer2_graphics[i].attributes.Construction_Start - timeExtent.endTime)/1000/60/60/24;
-                feature_start_to_feature_end = (layer2_graphics[i].attributes.Construction_Stop - layer2_graphics[i].attributes.Construction_Start)/1000/60/60/24;
-                //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.Construction_Start_Time)/1000/60/60/24;
-                //feature_end_feature_start_to_time_start = (timeExtent.startTime - layer_graphics[i].attributes.Construction_End_Time)/1000/60/60/24
-                feature_end_to_time_end = (timeExtent.endTime - layer2_graphics[i].attributes.Construction_Stop)/1000/60/60/24
-
-                if (feature_end_to_time_end >=0 ) {
-                    construction_phase = 'construction_finished';
-                } else if (feature_start_to_time_end <= 0 && feature_end_to_time_end < 0) {
-                    construction_phase = 'under_construction';
-                } else if (feature_start_to_time_end < 90) {
-                    construction_phase = 'construction_scheduled';
-                } else {
-                    if (layer2_graphics[i].attributes.Construction_Start && layer2_graphics[i].attributes.Construction_Stop) {
-                        construction_phase = 'construction_upcoming';
-                        //console.log(construction_phase);
-                    } else {
-                        construction_phase = 'schedule_unknown';
-                        //console.log(construction_phase);
-                    }
-                }
-            } else {
-                feature_start_to_time_end = 0;
-                feature_end_to_time_end = 0;
-                construction_phase = "schedule_unknown";
-            }
-            //console.log(layer_graphics[i].attributes);
-
-            if (timeExtent){
-                if (layer2_graphics[i].attributes.APN == "26502320130000") {
-                    console.log(feature_start_to_time_end);
-                    console.log(feature_end_to_time_end);
-                    console.log(construction_phase);
-                    console.log(timeExtent.endTime);
-                    console.log(layer2_graphics[i].attributes);
-                }
-                //layer2_graphics[i].attributes.PRJ_YEAR_PHASE = 'YEAR 1';
-            }
-
-            if (timeExtent && construction_phase == 'construction_upcoming'){
-                layer2_graphics[i].attributes.AWMP_Type = 'PR';
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color('yellow')));
-                //console.log('working');
-            } else if (timeExtent && construction_phase == 'construction_scheduled'){
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color('orange')));
-                layer2_graphics[i].attributes.AWMP_Type = 'BYR';
-            } else if (timeExtent && construction_phase == 'under_construction'){
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color('red')));
-                layer2_graphics[i].attributes.AWMP_Type = 'FYR';
-            } else if (timeExtent && construction_phase == 'construction_finished'){
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color('green')));
-                layer2_graphics[i].attributes.AWMP_Type = 'SMR';
-            } else {
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color('blue')));
-                layer2_graphics[i].attributes.AWMP_Type = 'TBD';
-            }
-         }
-
-
-
-}
 
 define(['dojo/_base/declare',
     'dojo/_base/lang',
@@ -119,6 +37,7 @@ define(['dojo/_base/declare',
     'esri/TimeExtent',
     'esri/dijit/TimeSlider',
 	'esri/symbols/SimpleFillSymbol',
+	'esri/symbols/SimpleLineSymbol',
 	'esri/renderers/TemporalRenderer',
 	"esri/Color",
 	'esri/renderers/TimeClassBreaksAger',
@@ -127,7 +46,7 @@ define(['dojo/_base/declare',
   ],
   function(declare, lang, html, array, dojoConfig, baseFx,
     on, has, Deferred, when, all, dateLocale, i18n,
-    LayerInfos, BaseWidget, esriLang, esriRequest, TimeExtent, TimeSlider, SimpleFillSymbol, TemporalRenderer, Color, TimeClassBreaksAger, SimpleFillSymbol, UniqueValueRenderer) {
+    LayerInfos, BaseWidget, esriLang, esriRequest, TimeExtent, TimeSlider, SimpleFillSymbol, SimpleLineSymbol, TemporalRenderer, Color, TimeClassBreaksAger, SimpleFillSymbol, UniqueValueRenderer) {
 	console.log('line 40is');
     // box of speed-menu
 	
@@ -602,10 +521,25 @@ define(['dojo/_base/declare',
               this.showTimeSlider();
             }
           }
+          layer5 = this.map.getLayer("City_of_Sacramento_Road_Closures_9148");// Traffic Alerts
+          layer5_graphics = layer5.graphics;
+          for (i = 0, len = layer5_graphics.length; i < len; i++) {
+                if (layer5_graphics[i].attributes.endtime){
+                    layer5_graphics[i].hide();
+                }
+
+             }
+
         }));
       },
 
       onClose: function() {
+          layer5 = this.map.getLayer("City_of_Sacramento_Road_Closures_9148");// Traffic Alerts
+          layer5_graphics = layer5.graphics;
+          for (i = 0, len = layer5_graphics.length; i < len; i++) {
+                layer5_graphics[i].show();
+             }
+
         this._initLayerInfosObj().then(lang.hitch(this, function() {
           if (!this.hasVisibleTemporalLayer()) {
             html.setStyle(this.noTimeContentNode, 'display', 'none');
@@ -981,15 +915,17 @@ define(['dojo/_base/declare',
 
       updateTimeExtentLabel: function(timeExtent) {
          layerId = this.map.graphicsLayerIds;
-         //console.log(this.map.getLayer(0));
+         //console.log(layerId);
          layer = this.map.getLayer("Sacramento_APP_Test_Time_Field_5151");// AWMP Boundaries
          layer2 = this.map.getLayer("Sacramento_APP_Test_Time_Field_8780");// AWMP Parcels
          layer3 = this.map.getLayer("Sacramento_APP_Test_Time_Field_4568");// Council Districts
          layer4 = this.map.getLayer("Sacramento_APP_Test_Time_Field_220");// City Boundary
+         layer5 = this.map.getLayer("City_of_Sacramento_Road_Closures_9148");// Traffic Alerts
          var layer_graphics = layer.graphics;
          var layer2_graphics = layer2.graphics;
+         var layer5_graphics = layer5.graphics;
          //var layer3_graphics = layer2.graphics;
-         //console.log(layerId);
+         //console.log(layer5_graphics);
          //console.log(layer_graphics[1]);
 
 
@@ -1042,19 +978,19 @@ define(['dojo/_base/declare',
 
             if (timeExtent && construction_phase == 'construction_upcoming'){
                 layer2_graphics[i].attributes.Construction_Phase = 'Construction Upcoming';
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,1])));
+                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,0.65])));
                 //console.log('working');
             } else if (timeExtent && construction_phase == 'construction_scheduled'){
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,170,0,0.6])));
+                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,170,0,0.65])));
                 layer2_graphics[i].attributes.Construction_Phase = 'Construction Scheduled';
             } else if (timeExtent && construction_phase == 'under_construction'){
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,0,0,0.6])));
+                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,0,0,0.65])));
                 layer2_graphics[i].attributes.Construction_Phase = 'Under Construction';
             } else if (timeExtent && construction_phase == 'construction_finished'){
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,128,0,0.6])));
+                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,128,0,0.65])));
                 layer2_graphics[i].attributes.Construction_Phase = 'Construction Finished';
             } else if (layer2_graphics[i].attributes.Construction_Phase) {
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([153,153,153,0.6])));
+                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([153,153,153,0.65])));
                 layer2_graphics[i].attributes.Construction_Phase = 'No Construction Scheduled';
             }
          }
@@ -1108,16 +1044,16 @@ define(['dojo/_base/declare',
 
             if (timeExtent && construction_phase == 'construction_upcoming'){
                 layer_graphics[i].attributes.Project_Status = 'In Design';
-                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,0.6])));
+                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,0.65])));
                 //console.log('working');
             } else if (timeExtent && construction_phase == 'construction_scheduled'){
-                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,0.6])));
+                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,0.65])));
                 layer_graphics[i].attributes.Project_Status = 'In Design';
             } else if (timeExtent && construction_phase == 'under_construction'){
-                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,0,0,0.6])));
+                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,0,0,0.65])));
                 layer_graphics[i].attributes.Project_Status = 'Under Construction';
             } else if (timeExtent && construction_phase == 'construction_finished'){
-                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,128,0,0.6])));
+                layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,128,0,0.65])));
                 layer_graphics[i].attributes.Project_Status = 'Construction Finished';
             } else {
                 //layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,1])));
@@ -1125,20 +1061,74 @@ define(['dojo/_base/declare',
             }
          }
 
+         for (i = 0, len = layer5_graphics.length; i < len; i++) {
+            //console.log(layer2_graphics[i].attributes);
+            //var new_color = new dojo.Color('blue');
+            var feature_start_to_time_end, feature_start_to_feature_end, feature_start_to_time_start, feature_end_feature_start_to_time_start, construction_phase
+            var static_time_mar102017 = 1489129200000;
+            // Setup logic to categorize elements based on phases set
+            if (layer5_graphics[i].attributes.starttime && layer5_graphics[i].attributes.endtime){
+                if (timeExtent){
+                feature_start_to_time_end = (layer5_graphics[i].attributes.starttime - timeExtent.endTime)/1000/60/60/24;
+                feature_start_to_feature_end = (layer5_graphics[i].attributes.endtime - layer5_graphics[i].attributes.starttime)/1000/60/60/24;
+                //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.Construction_Start_Time)/1000/60/60/24;
+                //feature_end_feature_start_to_time_start = (timeExtent.startTime - layer_graphics[i].attributes.Construction_End_Time)/1000/60/60/24
+                feature_end_to_time_end = (timeExtent.endTime - layer5_graphics[i].attributes.endtime)/1000/60/60/24
+                } else {
+                feature_start_to_time_end = (layer5_graphics[i].attributes.starttime - static_time_mar102017)/1000/60/60/24;
+                feature_start_to_feature_end = (layer5_graphics[i].attributes.endtime - layer5_graphics[i].attributes.starttime)/1000/60/60/24;
+                //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.Construction_Start_Time)/1000/60/60/24;
+                //feature_end_feature_start_to_time_start = (timeExtent.startTime - layer_graphics[i].attributes.Construction_End_Time)/1000/60/60/24
+                feature_end_to_time_end = (static_time_mar102017 - layer5_graphics[i].attributes.endtime)/1000/60/60/24
+                }
+                if (feature_end_to_time_end >=0 ) {
+                    construction_phase = 'construction_finished';
+                } else if (feature_start_to_time_end <= 0 && feature_end_to_time_end < 0) {
+                    construction_phase = 'under_construction';
+                } else if (feature_start_to_time_end < 14) {
+                    construction_phase = 'construction_scheduled';
+                } else {
+                    if (layer_graphics[i].attributes.Construction_Start_Time && layer_graphics[i].attributes.Construction_Stop_Time) {
+                        construction_phase = 'construction_upcoming';
+                        //console.log(construction_phase);
+                    }
+                }
+            } else {
+
+                feature_start_to_time_end = 0;
+                feature_end_to_time_end = 0;
+                construction_phase = "schedule_unknown";
+            }
+            //console.log(layer_graphics[i].attributes);
+            /*
+            if (timeExtent){
+                if (layer2_graphics[i].attributes.APN == "26502320130000") {
+                    console.log(feature_start_to_time_end);
+                    console.log(feature_end_to_time_end);
+                    console.log(construction_phase);
+                    console.log(timeExtent.endTime);
+                    console.log(layer2_graphics[i].attributes);
+                }
+                //layer2_graphics[i].attributes.PRJ_YEAR_PHASE = 'YEAR 1';
+            }
+            */
+
+            if (timeExtent && construction_phase == 'construction_finished'){
+                layer5_graphics[i].hide();
+                //layer5_graphics[i].setSymbol(new SimpleLineSymbol().STYLE_DOT);
+                //layer5_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,0,0,0])));
+                //layer2_graphics[i].attributes.Construction_Phase = 'Construction Finished';
+            } else if (timeExtent && construction_phase == 'construction_scheduled'){
+                layer5_graphics[i].show();
+            } else if (timeExtent && construction_phase == 'construction_upcoming'){
+                layer5_graphics[i].hide();
+            } else {
+                layer5_graphics[i].show();
+            }
+         }
+
+
          /*
-         var ager = new esri.renderer.TimeClassBreaksAger(infos, esri.renderer.TimeClassBreaksAger.UNIT_DAYS);
-         var defaultSymbol = new SimpleFillSymbol().setStyle(SimpleFillSymbol.STYLE_NULL);
-         var observationRenderer = new UniqueValueRenderer(defaultSymbol, "AWMP_Type");
-         observationRenderer.addValue("BYR", new SimpleFillSymbol().setColor(new Color('orange')));
-         observationRenderer.addValue("PR", new SimpleFillSymbol().setColor(new Color('yellow')));
-         observationRenderer.addValue("FYR", new SimpleFillSymbol().setColor(new Color('red')));
-         observationRenderer.addValue("SMR", new SimpleFillSymbol().setColor(new Color('green')));
-         observationRenderer.addValue("TBD", new SimpleFillSymbol().setColor(new Color('blue')));
-
-         graphic.setSymbol(#SimpleFillSybol());
-
-         var renderer = new esri.renderer.TemporalRenderer(observationRenderer, null, null, null);
-
          layer2.setRenderer(renderer);
          layer2.clear()
          layer2.refresh();

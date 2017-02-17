@@ -3,13 +3,13 @@
   "showInfoWindowOnSelect": true,
   "sources": [
     {
-      "layerId": "Sacramento_APP_Test_Time_Field_5054",
+      "layerId": "Sacramento_APP_Test_Time_Field_8780",
       "url": "https://services5.arcgis.com/8tbZGzFP4ylTC7QO/arcgis/rest/services/Sacramento_APP_Test_Time_Field/FeatureServer/2",
       "name": "AWMP Parcels",
       "placeholder": "",
       "searchFields": [
         "APN",
-        "AWMP_TYPE",
+        "AWMP_Project",
         "Address"
       ],
       "displayField": "Address",
