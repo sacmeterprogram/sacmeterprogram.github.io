@@ -989,7 +989,7 @@ define(['dojo/_base/declare',
             } else if (timeExtent && construction_phase == 'construction_finished'){
                 layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,128,0,0.7])));
                 layer2_graphics[i].attributes.Construction_Phase = 'Construction Finished';
-            } else if (layer2_graphics[i].attributes.Construction_Phase) {
+            } else if (timeExtent && layer2_graphics[i].attributes.Construction_Phase) {
                 layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([153,153,153,0.7])));
                 layer2_graphics[i].attributes.Construction_Phase = 'No Construction Scheduled';
             }
@@ -1023,7 +1023,7 @@ define(['dojo/_base/declare',
                         //console.log(construction_phase);
                     }
                 }
-            } else {
+            } else if(timeExtent) {
                 feature_start_to_time_end = 0;
                 feature_end_to_time_end = 0;
                 construction_phase = "schedule_unknown";
@@ -1093,7 +1093,7 @@ define(['dojo/_base/declare',
                         //console.log(construction_phase);
                     }
                 }
-            } else {
+            } else if (timeExtent){
 
                 feature_start_to_time_end = 0;
                 feature_end_to_time_end = 0;
