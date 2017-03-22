@@ -16,7 +16,7 @@
   "authorizedCrossOriginDomains": [],
   "title": "Where's My Meter?",
   "subtitle": "partnered with Carollo",
-  "keepAppState": true,
+  "keepAppState": false,
   "logo": "images\\logo.jpeg",
   "geometryService": "https://utility.arcgisonline.com/arcgis/rest/services/Geometry/GeometryServer",
   "links": [],
