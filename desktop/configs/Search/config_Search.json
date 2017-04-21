@@ -1,0 +1,38 @@
+{
+  "allPlaceholder": "",
+  "showInfoWindowOnSelect": true,
+  "sources": [
+    {
+      "layerId": "Sacramento_AWMP_APP_DATA_1229",
+      "url": "https://services3.arcgis.com/R2U57P58X3RrcXd3/arcgis/rest/services/Sacramento_AWMP_APP_DATA/FeatureServer/2",
+      "name": "AWMP Parcels",
+      "placeholder": "",
+      "searchFields": [
+        "APN",
+        "Address"
+      ],
+      "displayField": "Address",
+      "exactMatch": false,
+      "searchInCurrentMapExtent": false,
+      "zoomScale": 50000,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "type": "query"
+    },
+    {
+      "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
+      "name": "World",
+      "singleLineFieldName": "SingleLine",
+      "placeholder": "World",
+      "countryCode": "",
+      "zoomScale": 50000,
+      "maxSuggestions": 6,
+      "maxResults": 6,
+      "searchInCurrentMapExtent": false,
+      "enableLocalSearch": true,
+      "localSearchMinScale": 300000,
+      "localSearchDistance": 50000,
+      "type": "locator"
+    }
+  ]
+}
