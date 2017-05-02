@@ -3,7 +3,7 @@
   "showInfoWindowOnSelect": true,
   "sources": [
     {
-      "layerId": "Sacramento_AWMP_APP_DATA_1229",
+      "layerId": "Sacramento_AWMP_APP_DATA_2853",
       "url": "https://services3.arcgis.com/R2U57P58X3RrcXd3/arcgis/rest/services/Sacramento_AWMP_APP_DATA/FeatureServer/2",
       "name": "AWMP Parcels",
       "placeholder": "",
@@ -11,7 +11,7 @@
         "APN",
         "Address"
       ],
-      "displayField": "Address",
+      "displayField": "APN",
       "exactMatch": false,
       "searchInCurrentMapExtent": false,
       "zoomScale": 50000,

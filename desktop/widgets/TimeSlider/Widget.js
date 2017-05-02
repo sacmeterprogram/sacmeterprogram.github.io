@@ -917,101 +917,110 @@ define(['dojo/_base/declare',
          layerId = this.map.graphicsLayerIds;
          console.log(layerId);
 
-         //layer_test = this.map.getLayer("Sacramento_APP_Test_Time_Field_5151_177");
-         //layer_test1 = this.map.getLayer("Sacramento_AWMP_APP_DATA_1229_6061");
-         //layer_test2 = this.map.getLayer("Sacramento_APP_Test_Time_Field_5054_6638");
-         //layer_test3 = this.map.getLayer("Sacramento_AWMP_APP_DATA_5268");
-         //layer_test4 = this.map.getLayer("Sacramento_AWMP_APP_DATA_1229");
-         //layer_test5 = this.map.getLayer("Sacramento_AWMP_APP_DATA_5491");
-         //layer_test6 = this.map.getLayer("Sacramento_AWMP_APP_DATA_6707");
-         //console.log(layer_test);
-         //console.log(layer_test1); // Council Districts
-         //console.log(layer_test2);
-         //console.log(layer_test3); // AWMP Boundaries
-         //console.log(layer_test4); //AWMP Parcels
-         //console.log(layer_test5); //Council District
-         //console.log(layer_test6);  // City Boundary
+         //layer_test = this.map.getLayer("Sacramento_AWMP_APP_DATA_1229");
+         layer_test1 = this.map.getLayer("Sacramento_AWMP_APP_DATA_4183");
+         //layer_test2 = this.map.getLayer("Sacramento_AWMP_APP_DATA_1229");
 
+         //layer_testa = this.map.getLayer("Sacramento_AWMP_APP_DATA_2853");
+         //layer_testb = this.map.getLayer("Sacramento_AWMP_APP_DATA_1229_6061");
+         //layer_test3 = this.map.getLayer("Sacramento_APP_Test_Time_Field_4568");
+         //layer_test4 = this.map.getLayer("Sacramento_APP_Test_Time_Field_220");
+         //layer = this.map.getLayer("Sacramento_AWMP_APP_DATA_3227");
+         //layer_test6 = this.map.getLayer("Sacramento_AWMP_APP_DATA_6707");
+         //console.log(layer_testa);
+         //console.log(layer_testb);
+
+
+         //layera = this.map.getLayer("Sacramento_APP_Test_Time_Field_2238"); // previous boundaries
+         //layerb = this.map.getLayer("Sacramento_online_Time_Enabled_App_Version_B_9807");
+         //console.log(layera);
+         //console.log(layerb);
 
          //layer = this.map.getLayer("Sacramento_APP_Test_Time_Field_5151");// AWMP Boundaries
-         layer = this.map.getLayer("Sacramento_AWMP_APP_DATA_5268");// AWMP Boundaries
+         //layer = this.map.getLayer("Sacramento_AWMP_APP_DATA_5268");// AWMP Boundaries
+         //console.log(layer);
          //layer2 = this.map.getLayer("Sacramento_APP_Test_Time_Field_8780");// AWMP Parcels
-         layer2 = this.map.getLayer("Sacramento_AWMP_APP_DATA_1229");// AWMP Parcels
-         layer3 = this.map.getLayer("Sacramento_APP_Test_Time_Field_4568");// Council Districts
-         layer4 = this.map.getLayer("Sacramento_APP_Test_Time_Field_220");// City Boundary
+         layer_test2 = this.map.getLayer("Sacramento_AWMP_APP_DATA_2853");// AWMP Parcels
+         //layer2b = this.map.getLayer("Sacramento_AWMP_APP_DATA_1229_6061");// AWMP Parcels
+         //layer3 = this.map.getLayer("Sacramento_AWMP_APP_DATA_5491");// Council Districts
+         //layer4 = this.map.getLayer("Sacramento_AWMP_APP_DATA_6707");// City Boundary
          layer5 = this.map.getLayer("City_of_Sacramento_Road_Closures_9148");// Traffic Alerts
-         var layer_graphics = layer.graphics;
-         var layer2_graphics = layer2.graphics;
+
+         var layer_graphics = layer_test1.graphics; // boundaries
+         var layer2_graphics = layer_test2.graphics; // parcels
+         //var layer2b_graphics = layer2b.graphics;
          var layer5_graphics = layer5.graphics;
          //var layer3_graphics = layer2.graphics;
-         //console.log(layer5_graphics);
-         //console.log(layer_graphics[1]);
+         //console.log(layer_graphics);
+         //console.log(layer2_graphics);
 
 
-         for (i = 0, len = layer2_graphics.length; i < len; i++) {
-            //console.log(layer2_graphics[i].attributes);
-            var new_color = new dojo.Color('blue');
-            var feature_start_to_time_end, feature_start_to_feature_end, feature_start_to_time_start, feature_end_feature_start_to_time_start, construction_phase
+         if (layer2_graphics.length > 0) {
+                 for (i = 0, len = layer2_graphics.length; i < len; i++) {
+                    //console.log(layer2_graphics[i].attributes);
+                    var new_color = new dojo.Color('blue');
+                    var feature_start_to_time_end, feature_start_to_feature_end, feature_start_to_time_start, feature_end_feature_start_to_time_start, construction_phase;
 
-            // Setup logic to categorize elements based on phases set
-            if (timeExtent && layer2_graphics[i].attributes.Construction_Start && layer2_graphics[i].attributes.Construction_Stop){
-                feature_start_to_time_end = (layer2_graphics[i].attributes.Construction_Start - timeExtent.endTime)/1000/60/60/24;
-                feature_start_to_feature_end = (layer2_graphics[i].attributes.Construction_Stop - layer2_graphics[i].attributes.Construction_Start)/1000/60/60/24;
-                //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.Construction_Start_Time)/1000/60/60/24;
-                //feature_end_feature_start_to_time_start = (timeExtent.startTime - layer_graphics[i].attributes.Construction_End_Time)/1000/60/60/24
-                feature_end_to_time_end = (timeExtent.endTime - layer2_graphics[i].attributes.Construction_Stop)/1000/60/60/24
+                    // Setup logic to categorize elements based on phases set
+                    if (timeExtent && layer2_graphics[i].attributes.Construction_Start && layer2_graphics[i].attributes.Construction_Stop){
+                        feature_start_to_time_end = (layer2_graphics[i].attributes.Construction_Start - timeExtent.endTime)/1000/60/60/24;
+                        feature_start_to_feature_end = (layer2_graphics[i].attributes.Construction_Stop - layer2_graphics[i].attributes.Construction_Start)/1000/60/60/24;
+                        //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.CONSTRUCTION_START_TIME)/1000/60/60/24;
+                        //feature_end_feature_start_to_time_start = (timeExtent.startTime - layer_graphics[i].attributes.Construction_End_Time)/1000/60/60/24
+                        feature_end_to_time_end = (timeExtent.endTime - layer2_graphics[i].attributes.Construction_Stop)/1000/60/60/24
 
-                if (feature_end_to_time_end >=0 ) {
-                    construction_phase = 'construction_finished';
-                } else if (feature_start_to_time_end <= 0 && feature_end_to_time_end < 0) {
-                    construction_phase = 'under_construction';
-                } else if (feature_start_to_time_end < 90) {
-                    construction_phase = 'construction_scheduled';
-                } else {
-                    if (layer2_graphics[i].attributes.Construction_Start && layer2_graphics[i].attributes.Construction_Stop) {
-                        construction_phase = 'construction_upcoming';
-                        //console.log(construction_phase);
+                        if (feature_end_to_time_end >=0 ) {
+                            construction_phase = 'construction_finished';
+                        } else if (feature_start_to_time_end <= 0 && feature_end_to_time_end < 0) {
+                            construction_phase = 'under_construction';
+                        } else if (feature_start_to_time_end < 90) {
+                            construction_phase = 'construction_scheduled';
+                        } else {
+                            if (layer2_graphics[i].attributes.Construction_Start && layer2_graphics[i].attributes.Construction_Stop) {
+                                construction_phase = 'construction_upcoming';
+                                //console.log(construction_phase);
+                            } else {
+                                construction_phase = 'schedule_unknown';
+                                //console.log(construction_phase);
+                            }
+                        }
                     } else {
-                        construction_phase = 'schedule_unknown';
-                        //console.log(construction_phase);
+                        feature_start_to_time_end = 0;
+                        feature_end_to_time_end = 0;
+                        construction_phase = "schedule_unknown";
                     }
-                }
-            } else {
-                feature_start_to_time_end = 0;
-                feature_end_to_time_end = 0;
-                construction_phase = "schedule_unknown";
-            }
-            //console.log(layer_graphics[i].attributes);
-            /*
-            if (timeExtent){
-                if (layer2_graphics[i].attributes.APN == "26502320130000") {
-                    console.log(feature_start_to_time_end);
-                    console.log(feature_end_to_time_end);
-                    console.log(construction_phase);
-                    console.log(timeExtent.endTime);
-                    console.log(layer2_graphics[i].attributes);
-                }
-                //layer2_graphics[i].attributes.PRJ_YEAR_PHASE = 'YEAR 1';
-            }
-            */
+                    //console.log(layer_graphics[i].attributes);
+                    /*
+                    if (timeExtent){
+                        if (layer2_graphics[i].attributes.APN == "26502320130000") {
+                            console.log(feature_start_to_time_end);
+                            console.log(feature_end_to_time_end);
+                            console.log(construction_phase);
+                            console.log(timeExtent.endTime);
+                            console.log(layer2_graphics[i].attributes);
+                        }
+                        //layer2_graphics[i].attributes.PRJ_YEAR_PHASE = 'YEAR 1';
+                    }
+                    */
 
-            if (timeExtent && construction_phase == 'construction_upcoming'){
-                layer2_graphics[i].attributes.Construction_Phase = 'Construction Upcoming';
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,0.7])));
-                //console.log('working');
-            } else if (timeExtent && construction_phase == 'construction_scheduled'){
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,170,0,0.7])));
-                layer2_graphics[i].attributes.Construction_Phase = 'Construction Scheduled';
-            } else if (timeExtent && construction_phase == 'under_construction'){
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,0,0,0.7])));
-                layer2_graphics[i].attributes.Construction_Phase = 'Under Construction';
-            } else if (timeExtent && construction_phase == 'construction_finished'){
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,128,0,0.7])));
-                layer2_graphics[i].attributes.Construction_Phase = 'Construction Finished';
-            } else if (timeExtent && layer2_graphics[i].attributes.Construction_Phase) {
-                layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([153,153,153,0.7])));
-                layer2_graphics[i].attributes.Construction_Phase = 'No Construction Scheduled';
-            }
+                    if (timeExtent && construction_phase == 'construction_upcoming'){
+                        layer2_graphics[i].attributes.Construction_Phase = 'Construction Upcoming';
+                        layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,0.7])));
+                        //console.log('working');
+                    } else if (timeExtent && construction_phase == 'construction_scheduled'){
+                        layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,170,0,0.7])));
+                        layer2_graphics[i].attributes.Construction_Phase = 'Construction Scheduled';
+                    } else if (timeExtent && construction_phase == 'under_construction'){
+                        layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,0,0,0.7])));
+                        layer2_graphics[i].attributes.Construction_Phase = 'Under Construction';
+                    } else if (timeExtent && construction_phase == 'construction_finished'){
+                        layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,128,0,0.7])));
+                        layer2_graphics[i].attributes.Construction_Phase = 'Construction Finished';
+                    } else if (timeExtent && layer2_graphics[i].attributes.Construction_Phase) {
+                        layer2_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([153,153,153,0.7])));
+                        layer2_graphics[i].attributes.Construction_Phase = 'No Construction Scheduled';
+                    }
+                 }
          }
 
         for (i = 0, len = layer_graphics.length; i < len; i++) {
@@ -1020,12 +1029,12 @@ define(['dojo/_base/declare',
             var feature_start_to_time_end, feature_start_to_feature_end, feature_start_to_time_start, feature_end_feature_start_to_time_start, construction_phase
 
             // Setup logic to categorize elements based on phases set
-            if (timeExtent && layer_graphics[i].attributes.Construction_Start_Time && layer_graphics[i].attributes.Construction_Stop_Time){
-                feature_start_to_time_end = (layer_graphics[i].attributes.Construction_Start_Time - timeExtent.endTime)/1000/60/60/24;
-                feature_start_to_feature_end = (layer_graphics[i].attributes.Construction_Stop_Time - layer_graphics[i].attributes.Construction_Start_Time)/1000/60/60/24;
-                //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.Construction_Start_Time)/1000/60/60/24;
+            if (timeExtent && layer_graphics[i].attributes.CONSTRUCTION_START_TIME && layer_graphics[i].attributes.CONSTRUCTION_STOP_TIME){
+                feature_start_to_time_end = (layer_graphics[i].attributes.CONSTRUCTION_START_TIME - timeExtent.endTime)/1000/60/60/24;
+                feature_start_to_feature_end = (layer_graphics[i].attributes.CONSTRUCTION_STOP_TIME - layer_graphics[i].attributes.CONSTRUCTION_START_TIME)/1000/60/60/24;
+                //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.CONSTRUCTION_START_TIME)/1000/60/60/24;
                 //feature_end_feature_start_to_time_start = (timeExtent.startTime - layer_graphics[i].attributes.Construction_End_Time)/1000/60/60/24
-                feature_end_to_time_end = (timeExtent.endTime - layer_graphics[i].attributes.Construction_Stop_Time)/1000/60/60/24
+                feature_end_to_time_end = (timeExtent.endTime - layer_graphics[i].attributes.CONSTRUCTION_STOP_TIME)/1000/60/60/24
 
                 if (feature_end_to_time_end >=0 ) {
                     construction_phase = 'construction_finished';
@@ -1034,7 +1043,7 @@ define(['dojo/_base/declare',
                 } else if (feature_start_to_time_end < 90) {
                     construction_phase = 'construction_scheduled';
                 } else {
-                    if (layer_graphics[i].attributes.Construction_Start_Time && layer_graphics[i].attributes.Construction_Stop_Time) {
+                    if (layer_graphics[i].attributes.CONSTRUCTION_START_TIME && layer_graphics[i].attributes.CONSTRUCTION_STOP_TIME) {
                         construction_phase = 'construction_upcoming';
                         //console.log(construction_phase);
                     } else {
@@ -1062,23 +1071,24 @@ define(['dojo/_base/declare',
             */
 
             if (timeExtent && construction_phase == 'construction_upcoming'){
-                layer_graphics[i].attributes.Project_Status = 'In Design';
+                layer_graphics[i].attributes.PROJECT_STATUS = 'In Design';
                 layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,0.65])));
                 //console.log('working');
             } else if (timeExtent && construction_phase == 'construction_scheduled'){
                 layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,170,0,0.65])));
-                layer_graphics[i].attributes.Project_Status = 'Construction Scheduled';
+                layer_graphics[i].attributes.PROJECT_STATUS = 'Construction Scheduled';
             } else if (timeExtent && construction_phase == 'under_construction'){
                 layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,0,0,0.65])));
-                layer_graphics[i].attributes.Project_Status = 'Under Construction';
+                layer_graphics[i].attributes.PROJECT_STATUS = 'Under Construction';
             } else if (timeExtent && construction_phase == 'construction_finished'){
                 layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,128,0,0.65])));
-                layer_graphics[i].attributes.Project_Status = 'Construction Finished';
+                layer_graphics[i].attributes.PROJECT_STATUS = 'Construction Finished';
             } else {
                 //layer_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([255,255,0,1])));
-                //layer_graphics[i].attributes.Project_Status = 'No Construction Scheduled';
+                //layer_graphics[i].attributes.PROJECT_STATUS = 'No Construction Scheduled';
             }
          }
+
 
          for (i = 0, len = layer5_graphics.length; i < len; i++) {
             //console.log(layer2_graphics[i].attributes);
@@ -1086,38 +1096,46 @@ define(['dojo/_base/declare',
             var feature_start_to_time_end, feature_start_to_feature_end, feature_start_to_time_start, feature_end_feature_start_to_time_start, construction_phase
             var static_time_mar102017 = 1489129200000;
             // Setup logic to categorize elements based on phases set
-            if (layer5_graphics[i].attributes.starttime && layer5_graphics[i].attributes.endtime){
-                if (timeExtent){
-                feature_start_to_time_end = (layer5_graphics[i].attributes.starttime - timeExtent.endTime)/1000/60/60/24;
-                feature_start_to_feature_end = (layer5_graphics[i].attributes.endtime - layer5_graphics[i].attributes.starttime)/1000/60/60/24;
-                //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.Construction_Start_Time)/1000/60/60/24;
-                //feature_end_feature_start_to_time_start = (timeExtent.startTime - layer_graphics[i].attributes.Construction_End_Time)/1000/60/60/24
-                feature_end_to_time_end = (timeExtent.endTime - layer5_graphics[i].attributes.endtime)/1000/60/60/24
-                } else {
-                feature_start_to_time_end = (layer5_graphics[i].attributes.starttime - static_time_mar102017)/1000/60/60/24;
-                feature_start_to_feature_end = (layer5_graphics[i].attributes.endtime - layer5_graphics[i].attributes.starttime)/1000/60/60/24;
-                //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.Construction_Start_Time)/1000/60/60/24;
-                //feature_end_feature_start_to_time_start = (timeExtent.startTime - layer_graphics[i].attributes.Construction_End_Time)/1000/60/60/24
-                feature_end_to_time_end = (static_time_mar102017 - layer5_graphics[i].attributes.endtime)/1000/60/60/24
-                }
-                if (feature_end_to_time_end >=0 ) {
-                    construction_phase = 'construction_finished';
-                } else if (feature_start_to_time_end <= 0 && feature_end_to_time_end < 0) {
-                    construction_phase = 'under_construction';
-                } else if (feature_start_to_time_end < 14) {
-                    construction_phase = 'construction_scheduled';
-                } else {
-                    if (layer_graphics[i].attributes.Construction_Start_Time && layer_graphics[i].attributes.Construction_Stop_Time) {
-                        construction_phase = 'construction_upcoming';
-                        //console.log(construction_phase);
-                    }
-                }
-            } else if (timeExtent){
 
-                feature_start_to_time_end = 0;
-                feature_end_to_time_end = 0;
-                construction_phase = "schedule_unknown";
+            if (layer5_graphics[i]){
+                if (layer5_graphics[i].attributes.starttime && layer5_graphics[i].attributes.endtime){
+                    if (timeExtent){
+                    feature_start_to_time_end = (layer5_graphics[i].attributes.starttime - timeExtent.endTime)/1000/60/60/24;
+                    feature_start_to_feature_end = (layer5_graphics[i].attributes.endtime - layer5_graphics[i].attributes.starttime)/1000/60/60/24;
+                    //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.CONSTRUCTION_START_TIME)/1000/60/60/24;
+                    //feature_end_feature_start_to_time_start = (timeExtent.startTime - layer_graphics[i].attributes.Construction_End_Time)/1000/60/60/24
+                    feature_end_to_time_end = (timeExtent.endTime - layer5_graphics[i].attributes.endtime)/1000/60/60/24
+                    } else {
+                    feature_start_to_time_end = (layer5_graphics[i].attributes.starttime - static_time_mar102017)/1000/60/60/24;
+                    feature_start_to_feature_end = (layer5_graphics[i].attributes.endtime - layer5_graphics[i].attributes.starttime)/1000/60/60/24;
+                    //feature_start_to_time_start = (timeExtent.startTime - layer2_graphics[i].attributes.CONSTRUCTION_START_TIME)/1000/60/60/24;
+                    //feature_end_feature_start_to_time_start = (timeExtent.startTime - layer_graphics[i].attributes.Construction_End_Time)/1000/60/60/24
+                    feature_end_to_time_end = (static_time_mar102017 - layer5_graphics[i].attributes.endtime)/1000/60/60/24
+                    }
+                    if (feature_end_to_time_end >=0 ) {
+
+                        construction_phase = 'construction_finished';
+                    } else if (feature_start_to_time_end <= 0 && feature_end_to_time_end < 0) {
+                        construction_phase = 'under_construction';
+                    } else if (feature_start_to_time_end < 14) {
+                        construction_phase = 'construction_scheduled';
+                    } else {
+                        if (layer5_graphics[i].attributes.starttime && layer5_graphics[i].attributes.endtime) {
+                            construction_phase = 'construction_upcoming';
+                            //console.log(construction_phase);
+                        } else {
+                            construction_phase = 'construction_upcoming';
+                            console.log(construction_phase);
+                        }
+                    }
+                } else if (timeExtent){
+
+                    feature_start_to_time_end = 0;
+                    feature_end_to_time_end = 0;
+                    construction_phase = "schedule_unknown";
+                }
             }
+
             //console.log(layer_graphics[i].attributes);
             /*
             if (timeExtent){
@@ -1134,9 +1152,6 @@ define(['dojo/_base/declare',
 
             if (timeExtent && construction_phase == 'construction_finished'){
                 layer5_graphics[i].hide();
-                //layer5_graphics[i].setSymbol(new SimpleLineSymbol().STYLE_DOT);
-                //layer5_graphics[i].setSymbol(new SimpleFillSymbol().setColor(new Color([0,0,0,0])));
-                //layer2_graphics[i].attributes.Construction_Phase = 'Construction Finished';
             } else if (timeExtent && construction_phase == 'construction_scheduled'){
                 layer5_graphics[i].show();
             } else if (timeExtent && construction_phase == 'construction_upcoming'){

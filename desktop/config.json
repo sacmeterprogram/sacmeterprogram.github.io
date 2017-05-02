@@ -237,8 +237,7 @@
         "version": "2.2",
         "id": "widgets_LayerList_Widget_17",
         "name": "LayerList",
-        "index": 1,
-        "config": "configs/LayerList/config_LayerList.json"
+        "index": 1
       }
     ],
     "groups": []
