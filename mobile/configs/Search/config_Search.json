@@ -11,7 +11,7 @@
         "APN",
         "Address"
       ],
-      "displayField": "APN",
+      "displayField": "Address",
       "exactMatch": false,
       "searchInCurrentMapExtent": false,
       "zoomScale": 50000,
