@@ -21,16 +21,16 @@
     },
     {
       "url": "https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer",
-      "name": "World",
+      "name": "United States",
       "singleLineFieldName": "SingleLine",
-      "placeholder": "World",
-      "countryCode": "",
+      "placeholder": "Search Address",
+      "countryCode": "US",
       "zoomScale": 50000,
-      "maxSuggestions": 6,
+      "maxSuggestions": 3,
       "maxResults": 6,
       "searchInCurrentMapExtent": false,
       "enableLocalSearch": true,
-      "localSearchMinScale": 300000,
+      "localSearchMinScale": 10000,
       "localSearchDistance": 50000,
       "type": "locator"
     }
