@@ -30,7 +30,7 @@
       "maxResults": 6,
       "searchInCurrentMapExtent": false,
       "enableLocalSearch": true,
-      "localSearchMinScale": 10000,
+      "localSearchMinScale": 10000000,
       "localSearchDistance": 50000,
       "type": "locator"
     }
