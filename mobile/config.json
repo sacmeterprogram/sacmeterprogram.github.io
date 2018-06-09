@@ -147,8 +147,7 @@
         "version": "2.2",
         "id": "widgets_Splash_Widget_28",
         "name": "Splash",
-        "config": "configs/Splash/config_Splash.json",
-        "visible": false
+        "config": "configs/Splash/config_Splash.json"
       },
       {
         "position": {
