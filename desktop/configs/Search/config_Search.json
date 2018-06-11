@@ -3,14 +3,14 @@
   "showInfoWindowOnSelect": true,
   "sources": [
     {
-      "layerId": "Sacramento_AWMP_APP_DATA_4183",
-      "url": "https://services3.arcgis.com/R2U57P58X3RrcXd3/arcgis/rest/services/Sacramento_AWMP_APP_DATA/FeatureServer/3",
-      "name": "Meters Matter Projects",
+      "layerId": "Sacramento_AWMP_APP_DATA_5491",
+      "url": "https://services3.arcgis.com/R2U57P58X3RrcXd3/arcgis/rest/services/Sacramento_AWMP_APP_DATA/FeatureServer/1",
+      "name": "Council Districts",
       "placeholder": "",
       "searchFields": [
-        "PRJ_NAME"
+        "DISTNUM"
       ],
-      "displayField": "PRJ_NAME",
+      "displayField": "DISTNUM",
       "exactMatch": false,
       "searchInCurrentMapExtent": false,
       "zoomScale": 50000,
@@ -19,14 +19,14 @@
       "type": "query"
     },
     {
-      "layerId": "Sacramento_AWMP_APP_DATA_5491",
-      "url": "https://services3.arcgis.com/R2U57P58X3RrcXd3/arcgis/rest/services/Sacramento_AWMP_APP_DATA/FeatureServer/1",
-      "name": "Council Districts",
+      "layerId": "Sacramento_AWMP_APP_DATA_4183",
+      "url": "https://services3.arcgis.com/R2U57P58X3RrcXd3/arcgis/rest/services/Sacramento_AWMP_APP_DATA/FeatureServer/3",
+      "name": "Meters Matter Projects",
       "placeholder": "",
       "searchFields": [
-        "Name"
+        "PRJ_NAME"
       ],
-      "displayField": "Name",
+      "displayField": "PRJ_NAME",
       "exactMatch": false,
       "searchInCurrentMapExtent": false,
       "zoomScale": 50000,
