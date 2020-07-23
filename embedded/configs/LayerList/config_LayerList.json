@@ -1,0 +1,34 @@
+{
+  "showLegend": true,
+  "contextMenu": {
+    "ZoomTo": true,
+    "Transparency": true,
+    "EnableOrDisablePopup": true,
+    "MoveupOrMovedown": true,
+    "OpenAttributeTable": true,
+    "DescriptionOrShowItemDetailsOrDownload": true
+  },
+  "layerOptions": {
+    "Sacramento_AWMP_APP_DATA_6707": {
+      "display": true
+    },
+    "Sacramento_AWMP_APP_DATA_5491": {
+      "display": true
+    },
+    "Sacramento_AWMP_APP_DATA_1229": {
+      "display": true
+    },
+    "Sacramento_AWMP_APP_DATA_5268": {
+      "display": true
+    },
+    "City_of_Sacramento_Road_Closures_9148": {
+      "display": true
+    },
+    "Sacramento_AWMP_APP_DATA_1229_6061": {
+      "display": false
+    },
+    "Sacramento_APP_Test_Time_Field_5151_177": {
+      "display": false
+    }
+  }
+}
