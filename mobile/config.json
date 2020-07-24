@@ -148,7 +148,7 @@
         "id": "widgets_Splash_Widget_28",
         "name": "Splash",
         "config": "configs/Splash/config_Splash.json",
-        "visible": true
+        "visible": false
       },
       {
         "position": {
@@ -175,7 +175,8 @@
         "label": "Learn More",
         "version": "2.2",
         "uri": "widgets/About/Widget",
-        "config": "configs/About/config_Learn More.json"
+        "config": "configs/About/config_Learn More.json",
+		"visible": true
       },
       {
         "position": {
