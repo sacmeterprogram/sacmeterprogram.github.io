@@ -176,7 +176,7 @@
         "version": "2.2",
         "uri": "widgets/About/Widget",
         "config": "configs/About/config_Learn More.json",
-		"visible": true
+		"openAtStart": true
       },
       {
         "position": {
